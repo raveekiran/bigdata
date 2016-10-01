@@ -1,17 +1,22 @@
-#!/bin/bash
-echo " Drillbit on host $HOSTNAME is starting ... "
+#! /bin/sh
 
-sed -ie "s/export JAVA_HOME/#export JAVA_HOME/" /apache-drill-1.8.0/bin/drill-config.sh
+echo "Drillbit on host $HOSTNAME is starting ... "
+
+mv /root/apache-drill-1.8.0/conf/drill-override.conf  /root/apache-drill-1.8.0/conf/drill-override.conf.bak
+mv /root/apache-drill-1.8.0/conf/drill-override-example.conf  /root/apache-drill-1.8.0/conf/drill-override.conf
+
+sed -ie "s/export JAVA_HOME/#export JAVA_HOME/" /root/apache-drill-1.8.0/bin/drill-config.sh
 
 if [ ! -z "$1" ] ; then
-	echo " Setting cluster name to $1... "
-	sed -ie "s/drillbits1/$1/" /apache-drill-1.8.0/conf/drill-override.conf
+	echo "Setting cluster name to $1... "
+	sed -ie "s/drillbits1/$1/" /root/apache-drill-1.8.0/conf/drill-override.conf
 fi;
 
 if [ ! -z "$2" ] ; then
-	echo " Setting ZK quorum  to $2... "
-	sed -ie "s/localhost:2181/$2/" /apache-drill-1.8.0/conf/drill-override.conf
+	echo "Setting ZK quorum  to $2... "
+	sed -ie "s/localhost:2181/$2/" /root/apache-drill-1.8.0/conf/drill-override.conf
 fi;
-/apache-drill-1.8.0/bin/drillbit.sh --config /apache-drill-1.8.0/conf start
-touch /apache-drill-1.8.0/log/drillbit.out
-tail -f /apache-drill-1.8.0/log/drillbit.out
+
+/root/apache-drill-1.8.0/bin/drillbit.sh start --config /root/apache-drill-1.8.0/conf/ start
+
+tail -f /root/apache-drill-1.8.0/log/drillbit.out
