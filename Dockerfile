@@ -7,6 +7,6 @@ ENV JAVA_HOME /usr/lib/jvm/default-jvm
 ENV PATH ${PATH}:${JAVA_HOME}/bin
 
 COPY rundrill.sh .
-RUN chmod 755 ./rundrill.sh
+RUN chmod 755 /rundrill.sh
 
-ENTRYPOINT ["./rundrill.sh"]
+ENTRYPOINT ["/rundrill.sh"]
