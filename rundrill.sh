@@ -2,8 +2,8 @@
 
 echo "Drillbit on host $HOSTNAME is starting ... "
 
-mv /root/apache-drill-1.8.0/conf/drill-override.conf  /root/apache-drill-1.8.0/conf/drill-override.conf.bak
-mv /root/apache-drill-1.8.0/conf/drill-override-example.conf  /root/apache-drill-1.8.0/conf/drill-override.conf
+#mv /root/apache-drill-1.8.0/conf/drill-override.conf  /root/apache-drill-1.8.0/conf/drill-override.conf.bak
+#mv /root/apache-drill-1.8.0/conf/drill-override-example.conf  /root/apache-drill-1.8.0/conf/drill-override.conf
 
 sed -ie "s/export JAVA_HOME/#export JAVA_HOME/" /root/apache-drill-1.8.0/bin/drill-config.sh
 
@@ -17,6 +17,6 @@ if [ ! -z "$2" ] ; then
 	sed -ie "s/localhost:2181/$2/" /root/apache-drill-1.8.0/conf/drill-override.conf
 fi;
 
-/root/apache-drill-1.8.0/bin/drillbit.sh start --config /root/apache-drill-1.8.0/conf/ start
+/root/apache-drill-1.8.0/bin/drillbit.sh restart
 
 tail -f /root/apache-drill-1.8.0/log/drillbit.out
