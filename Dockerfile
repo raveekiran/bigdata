@@ -7,8 +7,8 @@ ENV PATH ${PATH}:${JAVA_HOME}/bin
 
 EXPOSE 8047 31010 31011 31012
 
-ADD rundrill.sh /rundrill.sh
+ADD rundrill.sh rundrill.sh
 
-RUN chmod +x  /rundrill.sh
+RUN chmod +x  rundrill.sh
 
-ENTRYPOINT ["/rundrill.sh"]
+ENTRYPOINT ["/root/rundrill.sh"]
