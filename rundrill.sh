@@ -1,4 +1,7 @@
 #! /bin/sh
+slp=$(( $RANDOM % 20 + 15 ));
+echo "Sleeping for $slp seconds"
+sleep $[ $slp ]s
 
 echo "Drillbit on host $HOSTNAME is starting ... "
 #mv /root/apache-drill-1.8.0/conf/drill-override.conf  /root/apache-drill-1.8.0/conf/drill-override.conf.bak
